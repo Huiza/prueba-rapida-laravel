@@ -1,0 +1,261 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de Pruebas",
+        "description": "API para realizar pruebas de ingeniería de sistemas",
+        "contact": {
+            "email": "support@example.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/prueba": {
+            "get": {
+                "summary": "Listar todos los recursos",
+                "description": "Obtiene una lista de todas las pruebas",
+                "operationId": "fd4b446b5d44112921af101b61945cbc",
+                "responses": {
+                    "200": {
+                        "description": "Lista de pruebas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No se encontraron recursos"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Crear una nueva prueba",
+                "description": "Crea un nuevo recurso de prueba en la base de datos",
+                "operationId": "7b7e8b7b3cc34dfd895c1ab0fa45c1f2",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Recurso creado exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error en los datos enviados"
+                    }
+                }
+            }
+        },
+        "/api/prueba/create": {
+            "get": {
+                "summary": "Mostrar formulario para crear un recurso",
+                "description": "Devuelve un formulario para crear una nueva prueba",
+                "operationId": "b043b79c8a84e6f3cf061335bdfe5c10",
+                "responses": {
+                    "200": {
+                        "description": "Formulario para crear recurso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "example": "Formulario HTML"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/prueba/{id}": {
+            "get": {
+                "summary": "Mostrar un recurso específico",
+                "description": "Devuelve un recurso de prueba específico por ID",
+                "operationId": "d7215873a701112d697858fc567f76fd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Recurso encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Recurso no encontrado"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Actualizar un recurso",
+                "description": "Actualiza un recurso de prueba existente por su ID",
+                "operationId": "32cb82bcb9667c91da3ab24d21748331",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Recurso actualizado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Datos incorrectos"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Eliminar un recurso",
+                "description": "Elimina un recurso de prueba por su ID",
+                "operationId": "03a05d6120180adda199f909400924b0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Recurso eliminado"
+                    },
+                    "404": {
+                        "description": "Recurso no encontrado"
+                    }
+                }
+            }
+        },
+        "/api/prueba/{id}/edit": {
+            "get": {
+                "summary": "Mostrar formulario para editar un recurso",
+                "description": "Devuelve un formulario para editar una prueba existente",
+                "operationId": "36ce44ed83be20d18c23d428dc4d0123",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Formulario para editar recurso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "example": "Formulario HTML"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
